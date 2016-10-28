@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FabTextView">
+        <attr name="fab_text" format="string|reference" />
+        <attr name="fab_textSize" format="dimension|reference" />
+        <attr name="fab_diameter" format="dimension|reference" />
+        <attr name="fab_iconSrc" format="reference" />
+        <attr name="fab_backgroundColor" format="color" />
+        <!--<attr name="fab_state" format="enum">-->
+        <!--<enum name="expand" value="0" />-->
+        <!--<enum name="shrink" value="1" />-->
+        <!--</attr>-->
+    </declare-styleable>
+</resources>

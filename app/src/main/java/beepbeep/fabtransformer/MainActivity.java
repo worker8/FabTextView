@@ -1,15 +1,15 @@
 package beepbeep.fabtransformer;
 
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import beepbeep.fabtextview.FabTextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     boolean toggleFlag = true;
 
     float distanceX = 0;
+
+    FabTextView fabTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         shrinkable = findViewById(R.id.shrinkable);
-        startView = findViewById(R.id.start);
-        endView = findViewById(R.id.end);
+        startView = findViewById(R.id.start_view);
+        endView = findViewById(R.id.end_view);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fabTextView = (FabTextView) findViewById(R.id.fab_text_view);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,28 +41,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        endView.setOnClickListener(new View.OnClickListener() {
+        fabTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (toggleFlag) {
-                    toggleFlag = false;
-                    ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(shrinkable, "scaleX", 0f);
-                    shrinkable.setPivotX(shrinkable.getWidth());
-                    if (distanceX == 0) {
-                        distanceX = shrinkable.getWidth();
-                    }
-                    Log.d("ddw", "onClick: " + distanceX);
-                    ObjectAnimator moveX = ObjectAnimator.ofFloat(startView, "translationX", distanceX);
-                    moveX.start();
-                    scaleDownX.start();
-                } else {
-                    toggleFlag = true;
-                    ObjectAnimator scaleUpX = ObjectAnimator.ofFloat(shrinkable, "scaleX", 1f);
-                    Log.d("ddw", "backward] onClick: " + distanceX);
-                    ObjectAnimator moveX = ObjectAnimator.ofFloat(startView, "translationX", 0);
-                    moveX.start();
-                    scaleUpX.start();
-                }
+                fabTextView.toggle();
             }
         });
     }

@@ -24,11 +24,17 @@
     <include layout="@layout/content_main" />
 
     <beepbeep.fabtextview.FabTextView
+        android:id="@+id/fab_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="120dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="16dp"
+        app:fab_backgroundColor="@color/green"
+        app:fab_diameter="@dimen/diameter"
+        app:fab_iconSrc="@mipmap/ic_launcher"
+        app:fab_text="Write Recipe"
+        app:fab_textSize="20sp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
