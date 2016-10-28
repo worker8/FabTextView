@@ -1,6 +1,8 @@
 package beepbeep.fabtextview;
 
+import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -110,7 +112,7 @@ public class FabTextView extends RelativeLayout {
         startView.getLayoutParams().height = diameter;
         startView.getLayoutParams().width = diameter;
         shrinkableTextView.getLayoutParams().height = diameter;
-        shrinkableTextView.setPadding(radius, 0, diameter, 0);//TODO: RTL
+        shrinkableTextView.setPadding(0, 0, (int) (diameter * 0.75), 0);//TODO: RTL
         RelativeLayout.LayoutParams shrinkableTextViewLayoutParams = (RelativeLayout.LayoutParams) shrinkableTextView.getLayoutParams();
         shrinkableTextViewLayoutParams.setMargins(-radius, 0, 0, 0);
         shrinkableTextView.setLayoutParams(shrinkableTextViewLayoutParams);
@@ -131,6 +133,17 @@ public class FabTextView extends RelativeLayout {
             moveX.start();
             scaleUpX.start();
         }
+    }
+
+    private void animColor(int colorFrom, int colorTo) {
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+
+            }
+        });
+        colorAnimation.start();
     }
 
     public void shrink() {

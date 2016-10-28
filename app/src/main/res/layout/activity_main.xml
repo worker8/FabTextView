@@ -31,7 +31,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="16dp"
         app:fab_backgroundColor="@color/green"
-        app:fab_diameter="@dimen/diameter"
+        app:fab_diameter="55dp"
         app:fab_iconSrc="@mipmap/ic_launcher"
         app:fab_text="Write Recipe"
         app:fab_textSize="20sp" />
