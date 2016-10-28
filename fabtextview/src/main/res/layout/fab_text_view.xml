@@ -1,0 +1,41 @@
+<merge>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="16dp">
+
+        <View
+            android:id="@+id/start"
+            android:layout_width="@dimen/diameter"
+            android:layout_height="@dimen/diameter"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/round_bg" />
+
+        <TextView
+            android:id="@+id/shrinkable"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/diameter"
+            android:layout_marginStart="-25dp"
+            android:layout_toEndOf="@+id/start"
+            android:background="@color/green"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/radius"
+            android:text="Write Recipe"
+            android:textColor="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/end"
+            android:layout_width="@dimen/diameter"
+            android:layout_height="@dimen/diameter"
+            android:layout_marginStart="-25dp"
+            android:layout_toEndOf="@+id/shrinkable"
+            android:background="@drawable/round_bg"
+            android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+</merge>
