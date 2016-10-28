@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,8 +40,9 @@ public class FabTextView extends RelativeLayout {
 
     private State state = State.EXPAND; // TODO: make this configurable
     private View startView;
-    private ImageView endView;
+    private ImageView imageView;
     private TextView shrinkableTextView;
+    private FrameLayout frameLayout;
     private float distanceX = 0;
 
     private String iconText;
@@ -86,7 +88,8 @@ public class FabTextView extends RelativeLayout {
 
         shrinkableTextView = (TextView) findViewById(R.id.shrinkable);
         startView = findViewById(R.id.start_view);
-        endView = (ImageView) findViewById(R.id.end_view);
+        imageView = (ImageView) findViewById(R.id.image_view);
+        frameLayout = (FrameLayout) findViewById(R.id.end_view);
         if (iconText != null && !iconText.isEmpty()) {
             shrinkableTextView.setText(iconText);
         }
@@ -99,7 +102,7 @@ public class FabTextView extends RelativeLayout {
         roundDrawable = getResources().getDrawable(R.drawable.round_bg);
         roundDrawable.setColorFilter(backgroundColor, PorterDuff.Mode.SRC_ATOP);
         startView.setBackground(roundDrawable);
-        endView.setBackground(roundDrawable);
+        frameLayout.setBackground(roundDrawable);
 
         // size
         int radius = diameter / 2;
@@ -112,11 +115,12 @@ public class FabTextView extends RelativeLayout {
         shrinkableTextViewLayoutParams.setMargins(-radius, 0, 0, 0);
         shrinkableTextView.setLayoutParams(shrinkableTextViewLayoutParams);
 
-        RelativeLayout.LayoutParams endViewLayoutParams = (RelativeLayout.LayoutParams) endView.getLayoutParams();
+        RelativeLayout.LayoutParams endViewLayoutParams = (RelativeLayout.LayoutParams) frameLayout.getLayoutParams();
         endViewLayoutParams.setMargins(-radius, 0, 0, 0);
-        endView.setLayoutParams(endViewLayoutParams);
-        endView.getLayoutParams().height = diameter;
-        endView.getLayoutParams().width = diameter;
+        frameLayout.setLayoutParams(endViewLayoutParams);
+        frameLayout.getLayoutParams().height = diameter;
+        frameLayout.getLayoutParams().width = diameter;
+
     }
 
     public void expand() {
@@ -153,8 +157,9 @@ public class FabTextView extends RelativeLayout {
 
     public void setIconDrawable(Drawable drawable) {
         if (drawable != null) {
-            endView.setImageDrawable(drawable);
+            imageView.setImageDrawable(drawable);
         }
     }
+
 
 }
