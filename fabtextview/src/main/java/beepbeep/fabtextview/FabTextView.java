@@ -4,11 +4,12 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.v4.text.TextUtilsCompat;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -142,9 +143,8 @@ public class FabTextView extends RelativeLayout {
 
     }
 
-    private boolean isLTR() {
-        Configuration config = getContext().getResources().getConfiguration();
-        return !(config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL);
+    public boolean isLTR() {
+        return TextUtilsCompat.getLayoutDirectionFromLocale(getResources().getConfiguration().locale) == ViewCompat.LAYOUT_DIRECTION_LTR;
         // return false; // for debugging
     }
 
