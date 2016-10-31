@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -112,17 +113,39 @@ public class FabTextView extends RelativeLayout {
         startView.getLayoutParams().height = diameter;
         startView.getLayoutParams().width = diameter;
         shrinkableTextView.getLayoutParams().height = diameter;
-        shrinkableTextView.setPadding(0, 0, (int) (diameter * 0.75), 0);//TODO: RTL
+
+        if (isLTR()) {
+            shrinkableTextView.setPadding(0, 0, (int) (diameter * 0.75), 0);
+        } else {
+            shrinkableTextView.setPadding((int) (diameter * 0.75), 0, 0, 0);
+        }
+
+
         RelativeLayout.LayoutParams shrinkableTextViewLayoutParams = (RelativeLayout.LayoutParams) shrinkableTextView.getLayoutParams();
-        shrinkableTextViewLayoutParams.setMargins(-radius, 0, 0, 0);
+
+        if (isLTR()) {
+            shrinkableTextViewLayoutParams.setMargins(-radius, 0, 0, 0);
+        } else {
+            shrinkableTextViewLayoutParams.setMargins(0, 0, -radius, 0);
+        }
         shrinkableTextView.setLayoutParams(shrinkableTextViewLayoutParams);
 
         RelativeLayout.LayoutParams endViewLayoutParams = (RelativeLayout.LayoutParams) frameLayout.getLayoutParams();
-        endViewLayoutParams.setMargins(-radius, 0, 0, 0);
+        if (isLTR()) {
+            endViewLayoutParams.setMargins(-radius, 0, 0, 0);
+        } else {
+            endViewLayoutParams.setMargins(0, 0, -radius, 0);
+        }
         frameLayout.setLayoutParams(endViewLayoutParams);
         frameLayout.getLayoutParams().height = diameter;
         frameLayout.getLayoutParams().width = diameter;
 
+    }
+
+    private boolean isLTR() {
+        Configuration config = getContext().getResources().getConfiguration();
+        return !(config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL);
+        // return false; // for debugging
     }
 
     public void expand() {
@@ -150,11 +173,22 @@ public class FabTextView extends RelativeLayout {
         if (state == State.EXPAND) {
             state = State.SHRINK;
             ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(shrinkableTextView, "scaleX", 0f);
-            shrinkableTextView.setPivotX(shrinkableTextView.getWidth());
+            if (isLTR()) {
+                shrinkableTextView.setPivotX(shrinkableTextView.getWidth());
+            } else {
+                shrinkableTextView.setPivotX(0);
+            }
+
             if (distanceX == 0) {
                 distanceX = shrinkableTextView.getWidth();
             }
-            ObjectAnimator moveX = ObjectAnimator.ofFloat(startView, "translationX", distanceX);
+            ObjectAnimator moveX;
+            if (isLTR()) {
+                moveX = ObjectAnimator.ofFloat(startView, "translationX", distanceX);
+            } else {
+                moveX = ObjectAnimator.ofFloat(startView, "translationX", -distanceX);
+            }
+
             moveX.start();
             scaleDownX.start();
         }
