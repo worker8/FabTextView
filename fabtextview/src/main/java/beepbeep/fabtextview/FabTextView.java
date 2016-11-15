@@ -208,5 +208,7 @@ public class FabTextView extends RelativeLayout {
         }
     }
 
-
+    public State getState() {
+        return state;
+    }
 }
