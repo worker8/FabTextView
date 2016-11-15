@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class FabTextView extends RelativeLayout {
 
-    private enum State {
+    public enum State {
         EXPAND(0), SHRINK(1);
         int num;
 
