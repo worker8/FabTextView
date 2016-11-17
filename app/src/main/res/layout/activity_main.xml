@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+
     tools:context="beepbeep.fabtransformer.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -23,27 +24,46 @@
 
     <include layout="@layout/content_main" />
 
-    <beepbeep.fabtextview.FabTextView
-        android:id="@+id/fab_text_view"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="16dp"
-        app:fab_backgroundColor="@color/colorPrimaryDark"
-        app:fab_diameter="55dp"
-        app:fab_iconSrc="@mipmap/ic_launcher"
-        app:fab_text="Android Robot"
-        app:fab_textSize="20sp" />
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:visibility="gone"
-        app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layoutDirection="rtl">
+
+            <beepbeep.fabtextview.FabTextView
+                android:id="@+id/fab_text_view_rtl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="16dp"
+                app:fab_backgroundColor="@color/colorPrimary"
+                app:fab_diameter="55dp"
+                app:fab_iconSrc="@mipmap/ic_launcher"
+                app:fab_text="Right to Left Test"
+                app:fab_textSize="20sp" />
+
+        </FrameLayout>
+
+        <beepbeep.fabtextview.FabTextView
+            android:id="@+id/fab_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            app:fab_backgroundColor="@color/colorPrimaryDark"
+            app:fab_diameter="55dp"
+            app:fab_iconSrc="@mipmap/ic_launcher"
+            app:fab_text="Android Robot"
+            app:fab_textSize="20sp" />
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

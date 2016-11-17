@@ -4,20 +4,21 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/relative_layout"
         android:layout_width="wrap_content"
+        android:layoutDirection="inherit"
         android:layout_height="wrap_content">
 
         <View
-            android:id="@+id/start_view"
+            android:id="@+id/startView"
             android:layout_width="@dimen/diameter"
             android:layout_height="@dimen/diameter"
             android:layout_alignParentStart="true"
             android:background="@drawable/round_bg" />
 
         <TextView
-            android:id="@+id/shrinkable"
+            android:id="@+id/shrinkableTextView"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/diameter"
-            android:layout_toEndOf="@+id/start_view"
+            android:layout_toEndOf="@+id/startView"
             android:background="@color/green"
             android:gravity="center"
             android:maxLines="1"
@@ -26,14 +27,14 @@
             android:textColor="#FFFFFF" />
         <!--android:layout_marginStart="@dimen/radius_negative"-->
         <FrameLayout
-            android:id="@+id/end_view"
+            android:id="@+id/iconFrameLayout"
             android:layout_width="@dimen/diameter"
             android:layout_height="@dimen/diameter"
-            android:layout_toEndOf="@+id/shrinkable"
+            android:layout_toEndOf="@+id/shrinkableTextView"
             android:background="@drawable/round_bg">
 
             <ImageView
-                android:id="@+id/image_view"
+                android:id="@+id/iconImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

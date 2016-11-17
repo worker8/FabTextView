@@ -1,8 +1,6 @@
 package beepbeep.fabtransformer;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,12 +11,9 @@ import beepbeep.fabtextview.FabTextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    View startView, shrinkable, endView;
-    boolean toggleFlag = true;
+    View shrinkable;
 
-    float distanceX = 0;
-
-    FabTextView fabTextView;
+    FabTextView fabTextView, fabTextViewRtl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,24 +22,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        shrinkable = findViewById(R.id.shrinkable);
-        startView = findViewById(R.id.start_view);
-        endView = findViewById(R.id.end_view);
+        shrinkable = findViewById(R.id.shrinkableTextView);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fabTextView = (FabTextView) findViewById(R.id.fab_text_view);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         fabTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fabTextView.toggle();
+            }
+        });
+        
+        fabTextViewRtl = (FabTextView) findViewById(R.id.fab_text_view_rtl);
+
+        fabTextViewRtl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fabTextViewRtl.toggle();
             }
         });
     }

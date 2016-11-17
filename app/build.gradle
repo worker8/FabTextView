@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
+repositories {
+    maven { url "https://jitpack.io" }
+    mavenCentral()
+}
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -17,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
@@ -28,4 +37,8 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
     compile project(':fabtextview')
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+//    compile('com.github.worker8:FabTextView:1.0.2') {
+//        transitive = false
+//    }
 }
